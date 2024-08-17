@@ -1,0 +1,40 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+main{
+  padding: 0 16px;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+
+.col{
+  border: solid 1px gray;
+  border-radius: 2px;
+  padding: .4rem;
+}
+
+.header{
+  margin-bottom: 4rem;
+}
+.header .navbar{
+  height: 80px;
+  background-color: #67baff;
+}
+
+.bi{
+  font-size: 18px;
+  color: #082733;
+}
+
+.nav-item{
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+}
+.crud-icon + .crud-icon{
+  margin-left: 12px;
+}

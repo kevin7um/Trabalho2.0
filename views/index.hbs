@@ -1,0 +1,94 @@
+<header class="header">
+	<nav class="navbar navbar-expand-lg">
+		<div class="container-fluid">
+			<span class="navbar-brand">Anotações</span>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<i class="bi bi-house-fill" style="font-size: 18px;"></i>
+						<a class="nav-link active" aria-current="page" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<i class="bi bi-info-square-fill"></i>
+						<a class="nav-link" href="/sobre">Sobre</a>
+					</li>
+					<li class="nav-item">
+						<i class="bi bi-plus-square-fill"></i>
+						<a class="nav-link" href="/anotacao/cria">Criar anotação</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<main>
+
+	<div class="container-fluid text-center">
+		{{#if anotacoes}}
+
+		<div class="row">
+			<div class="col d-none d-lg-block">
+				<strong>Alterar Status</strong>
+			</div>
+			<div class="col d-none d-lg-block">
+				<strong>Tag</strong>
+			</div>
+			<div class="col">
+				<strong>Anotação</strong>
+			</div>
+			<div class="col">
+				<strong>Operação</strong>
+			</div>
+		</div>
+		{{#each anotacoes}}
+		<div class="row">
+			{{#if this.lida}}
+			<div class="col d-none d-lg-block">
+				<a href="/anotacao/nao_lida/{{this.id}}">Não lida</a>
+			</div>
+			<div class="col d-none d-lg-block">
+				<i class="bi bi-person-workspace"></i>
+				{{!-- <i class="bi bi-bookmarks-fill"></i>
+				<i class="bi bi-brightness-alt-high-fill"></i>
+				<i class="bi bi-file-person-fill"></i> --}}
+				{{this.tag}}
+			</div>
+			<div class="col text-start">
+				{{this.titulo}}
+			</div>
+			{{else}}
+			<div class="col d-none d-lg-block">
+				<a href="/anotacao/lida/{{this.id}}">Lida</a>
+			</div>
+			<div class="col d-none d-lg-block">
+				{{this.tag}}
+			</div>
+			<div class="col text-start">
+				<b>{{this.titulo}}</b>
+			</div>
+			{{/if}}
+			<div class="col ">
+				<a class="crud-icon" href="anotacao/consulta/{{this.id}}">
+					<i class="bi bi-eye-fill"></i>
+				</a>
+				<a class="crud-icon" href="anotacao/altera/{{this.id}}">
+					<i class="bi bi-pencil-square"></i>
+				</a>
+				<a class="crud-icon" href="anotacao/deleta/{{this.id}}">
+					<i class="bi bi-trash3-fill"></i>
+				</a>
+			</div>
+		</div>
+		{{/each}}
+
+		{{else}}
+		<h3>Ainda não há nenhuma anotação cadastrada</h3>
+		<a href="anotacao/cria">Crie sua primeira anotação</a>
+		{{/if}}
+	</div>
+</main>
