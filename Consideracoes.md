@@ -15,8 +15,8 @@ A respeito de todas as operações do CRUD voltar para a tela principal:
 [x] Adaptação os botões da aplicação para botões Bootstrap.
 [x] Adaptar os formulários da aplicação para Formulários Bootstrap com Grid.
 [-] Aplicação de ícones Boostrap e Imagem
-[] Alteração de tag por clique.
-[] Janela modal de exclusão de anotações.
+[x] Alteração de tag por clique.
+[x] Janela modal de exclusão de anotações.
 [] Opção de Filtro por Tag
 [] Mensagem de Erro
 [] Escolha de esquema de cores para aplicação
@@ -30,3 +30,9 @@ extensão .zip ou .rar e enviados via Tarefa do SIGAA ou email.
 
 ## Data de Entrega 
   18/08/2024
+
+
+<!-- <i class="bi bi-person-workspace"></i>
+<i class="bi bi-bookmarks-fill"></i>
+<i class="bi bi-brightness-alt-high-fill"></i>
+<i class="bi bi-file-person-fill"></i> -->

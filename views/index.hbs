@@ -2,8 +2,15 @@
 	<nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
 			<span class="navbar-brand">Anotações</span>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
@@ -31,64 +38,102 @@
 	<div class="container-fluid text-center">
 		{{#if anotacoes}}
 
-		<div class="row">
-			<div class="col d-none d-lg-block">
-				<strong>Alterar Status</strong>
+			<div class="row">
+				<div class="col d-none d-lg-block">
+					<strong>Alterar Status</strong>
+				</div>
+				<div class="col d-none d-lg-block">
+					<strong>Tag</strong>
+				</div>
+				<div class="col">
+					<strong>Anotação</strong>
+				</div>
+				<div class="col">
+					<strong>Operação</strong>
+				</div>
 			</div>
-			<div class="col d-none d-lg-block">
-				<strong>Tag</strong>
-			</div>
-			<div class="col">
-				<strong>Anotação</strong>
-			</div>
-			<div class="col">
-				<strong>Operação</strong>
-			</div>
-		</div>
-		{{#each anotacoes}}
-		<div class="row">
-			{{#if this.lida}}
-			<div class="col d-none d-lg-block">
-				<a href="/anotacao/nao_lida/{{this.id}}">Não lida</a>
-			</div>
-			<div class="col d-none d-lg-block">
-				<i class="bi bi-person-workspace"></i>
-				{{!-- <i class="bi bi-bookmarks-fill"></i>
-				<i class="bi bi-brightness-alt-high-fill"></i>
-				<i class="bi bi-file-person-fill"></i> --}}
-				{{this.tag}}
-			</div>
-			<div class="col text-start">
-				{{this.titulo}}
-			</div>
-			{{else}}
-			<div class="col d-none d-lg-block">
-				<a href="/anotacao/lida/{{this.id}}">Lida</a>
-			</div>
-			<div class="col d-none d-lg-block">
-				{{this.tag}}
-			</div>
-			<div class="col text-start">
-				<b>{{this.titulo}}</b>
-			</div>
-			{{/if}}
-			<div class="col ">
-				<a class="crud-icon" href="anotacao/consulta/{{this.id}}">
-					<i class="bi bi-eye-fill"></i>
-				</a>
-				<a class="crud-icon" href="anotacao/altera/{{this.id}}">
-					<i class="bi bi-pencil-square"></i>
-				</a>
-				<a class="crud-icon" href="anotacao/deleta/{{this.id}}">
-					<i class="bi bi-trash3-fill"></i>
-				</a>
-			</div>
-		</div>
-		{{/each}}
+			{{#each anotacoes}}
+				<div class="row">
+					{{#if this.lida}}
+						<div class="col d-none d-lg-block">
+							<a href="/anotacao/nao_lida/{{this.id}}">Não lida</a>
+						</div>
+						<div class="col d-none d-lg-block">
+							<a href="/anotacao/tag_{{this.tag}}/{{this.id}}">{{this.tag}}</a>
+						</div>
+						<div class="col text-start">
+							{{this.titulo}}
+						</div>
+					{{else}}
+						<div class="col d-none d-lg-block">
+							<a href="/anotacao/lida/{{this.id}}">Lida</a>
+						</div>
+						<div class="col d-none d-lg-block">
+							<a href="/anotacao/tag_{{this.tag}}/{{this.id}}">{{this.tag}}</a>
+						</div>
+						<div class="col text-start">
+							<b>{{this.titulo}}</b>
+						</div>
+					{{/if}}
+					<div class="col">
+						<a class="crud-icon" href="anotacao/consulta/{{this.id}}">
+							<i class="bi bi-eye-fill"></i>
+						</a>
+						<a class="crud-icon" href="anotacao/altera/{{this.id}}">
+							<i class="bi bi-pencil-square"></i>
+						</a>
+						<a
+							role="button"
+							class="crud-icon"
+							href="anotacao/deleta/{{this.id}}"
+							data-bs-toggle="modal"
+							data-bs-target="#ModalExclusao"
+							data-bs-id={{this.id}}
+							data-bs-titulo="{{this.titulo}}"
+						>
+							<i class="bi bi-trash3-fill"></i>
+						</a>
+					</div>
+				</div>
+
+			{{/each}}
 
 		{{else}}
-		<h3>Ainda não há nenhuma anotação cadastrada</h3>
-		<a href="anotacao/cria">Crie sua primeira anotação</a>
+			<h3>Ainda não há nenhuma anotação cadastrada</h3>
+			<a href="anotacao/cria">Crie sua primeira anotação</a>
 		{{/if}}
 	</div>
 </main>
+
+{{! Modal }}
+<div
+	class="modal"
+	tabindex="-1"
+	id="ModalExclusao"
+	aria-labelledby="ModalExclusao"
+>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Excluir Anotação</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body">
+				<p>Tem certeza que deseja excluir a anotação "{{this.titulo}}"?</p>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					class="btn btn-secondary"
+					data-bs-dismiss="modal"
+				>Cancelar</button>
+				<a id="idModal" role="button" href="" class="btn btn-danger">Excluir</a>
+			</div>
+		</div>
+	</div>
+</div>

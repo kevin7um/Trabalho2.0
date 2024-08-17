@@ -107,3 +107,35 @@ exports.nao_lida = async function(req, res) {
     res.redirect("/");
 }
 
+exports.tag_pessoal = async function(req, res){
+    let id = req.params.id_anotacao;
+    let anotacao = await anotacoes.consulta(id);
+    anotacao.tag = "Trabalho";
+
+    res.redirect("/");
+}
+
+exports.tag_trabalho = async function(req, res){
+    let id = req.params.id_anotacao;
+    let anotacao = await anotacoes.consulta(id);
+    anotacao.tag = "Curso";
+
+    res.redirect("/");
+}
+
+exports.tag_curso = async function(req, res){
+    let id = req.params.id_anotacao;
+    let anotacao = await anotacoes.consulta(id);
+    anotacao.tag = "Lazer";
+
+    res.redirect("/");
+}
+
+exports.tag_lazer = async function(req, res){
+    let id = req.params.id_anotacao;
+    let anotacao = await anotacoes.consulta(id);
+    anotacao.tag = "Pessoal";
+
+    res.redirect("/");
+}
+
