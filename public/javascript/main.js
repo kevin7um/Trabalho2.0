@@ -12,3 +12,29 @@ modalExclusao.addEventListener('show.bs.modal', event => {
   conteudoModal.textContent = `Tem certeza que deseja excluir a anotação:  ${titulo}`
   linkModal.href = `/anotacao/deleta/${id}`
 })
+
+function addIcons(item){
+  if(item.lastElementChild.textContent === "Trabalho"){
+    item.firstElementChild.classList.add('bi')
+    item.firstElementChild.classList.add('bi-person-workspace')
+  } 
+  else if(item.lastElementChild.textContent === "Curso"){
+    item.firstElementChild.classList.add('bi')
+    item.firstElementChild.classList.add('bi-bookmarks-fill')
+  }
+  else if(item.lastElementChild.textContent === "Pessoal"){
+    item.firstElementChild.classList.add('bi')
+    item.firstElementChild.classList.add('bi-file-person-fill')
+  } 
+  else if(item.lastElementChild.textContent === "Lazer"){
+    item.firstElementChild.classList.add('bi')
+    item.firstElementChild.classList.add('bi-brightness-alt-high-fill')
+  }
+}
+const linkTag = document.querySelectorAll('#js-link-tag');
+
+window.onload = () => {
+  linkTag.forEach(items => {
+    addIcons(items)
+  })
+}

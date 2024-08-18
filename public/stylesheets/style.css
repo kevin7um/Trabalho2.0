@@ -1,3 +1,26 @@
+:root{
+  /*Cores icones*/
+  --IconVisualizacao: #1C85FF;
+  --IconEditar: #DDFF24;
+  --IconExcluir:#852016;
+  --CorHover: #550000;
+
+  --Principal: #886BF2;
+  --Secundaria: #020873;
+  --Alternativa: #1BB5F2;
+}
+
+.navbar *, .navbar .bi {
+  color: #EEEEEE;
+}
+.nav-link:hover{
+  scale: 1.1;
+  color: #EEEEEE ;
+  transition: 500ms;
+}
+
+
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -6,28 +29,45 @@ main{
   padding: 0 16px;
 }
 
+.tag , .link-tag{
+  color: var(--Secundaria);
+}
+
 a {
-  color: #00B7FF;
+  color: var(--Alternativa);
   text-decoration: none;
 }
 
 .col{
-  border: solid 1px gray;
+  border: solid 1px lightgray;
   border-radius: 2px;
   padding: .4rem;
 }
 
 .header{
-  margin-bottom: 4rem;
+  margin-bottom: 4rem; 
 }
 .header .navbar{
   height: 80px;
-  background-color: #67baff;
+  background-color: var(--Principal);
 }
 
 .bi{
   font-size: 18px;
-  color: #082733;
+  color: var(--Alternativa);
+}
+
+.bi-eye-fill{
+  color: var(--Alternativa);
+
+}
+
+.bi-pencil-square{
+  color:var(--Principal);
+}
+
+.bi-trash3-fill{
+  color: var(--Secundaria);
 }
 
 .nav-item{

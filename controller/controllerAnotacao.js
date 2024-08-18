@@ -5,6 +5,11 @@ function incrementando(){
     return incremento++
 }
 
+async function verificaAnotacaoExiste(id){
+    let ids= await anotacoes.lista_ids()
+    return ids.includes(id.toString()) 
+}
+
 exports.cria_get = async function (req, res) {
     contexto = {
         titulo_pagina: "Criar Anotação",
@@ -29,8 +34,14 @@ exports.cria_post = async function (req, res) {
 
 exports.consulta = async function (req, res) {
     let id = req.params.id_anotacao;
+
+    if (!(await verificaAnotacaoExiste(id))) {
+        return res.render('erroAnotacao', { mensagem: `Anotação com o id ${id} não foi encontrada.` });
+    }
     let anotacao = await anotacoes.consulta(id);
     let dataFormatada = anotacao.data.toLocaleDateString('pt-BR');
+
+    console.log(await anotacoes.lista_ids())
 
     contexto = {
         titulo_pagina: "Visualizar Anotação",
@@ -48,6 +59,10 @@ exports.consulta = async function (req, res) {
 
 exports.altera_get = async function (req, res) {
     let id = req.params.id_anotacao
+    if (!(await verificaAnotacaoExiste(id))) {
+        return res.render('erroAnotacao', { mensagem: `Anotação com o id ${id} não foi encontrada.` });
+    }
+
     let anotacao = await anotacoes.consulta(id);
     contexto = {
         titulo_pagina: "Editar Anotação",
@@ -76,7 +91,9 @@ exports.altera_post = async function (req, res) {
     else{
         status = false;
     }
-
+    if (!(await verificaAnotacaoExiste(id))) {
+        return res.render('erroAnotacao', { mensagem: `Anotação com o id ${id} não foi encontrada.` });
+    }
     let anotacao = await anotacoes.consulta(id);
 
     await anotacoes.atualiza(id, titulo, descricao, anotacao.data, tag, status);
@@ -86,6 +103,9 @@ exports.altera_post = async function (req, res) {
 
 exports.deleta = async function (req, res) {
     let id = req.params.id_anotacao
+    if (!(await verificaAnotacaoExiste(id))) {
+        return res.render('erroAnotacao', { mensagem: `Anotação com o id ${id} não foi encontrada.` });
+    }
     await anotacoes.deleta(id);
 
     res.redirect('/');
@@ -144,4 +164,3 @@ exports.tag_lazer = async function(req, res){
     let urlReq = req.get('referer');
     res.redirect(urlReq);
 }
-

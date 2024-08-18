@@ -2,6 +2,8 @@ const anotacoes = require('../model/anotacaoMemoria.js')
 
 exports.tela_principal = async function (req, res) {
 
+    anotacoes.filtro = "Todos"
+
     contexto = {
         titulo_pagina: "Gestor de Anotações",
         anotacoes: await anotacoes.lista(),
