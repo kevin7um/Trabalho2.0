@@ -19,6 +19,7 @@ router.get('/deleta/:id_anotacao', controllerAnotacao.deleta);
 router.get('/lida/:id_anotacao', controllerAnotacao.lida);
 
 router.get('/nao_lida/:id_anotacao', controllerAnotacao.nao_lida);
+
 router.get('/tag_Pessoal/:id_anotacao', controllerAnotacao.tag_pessoal);
 
 router.get('/tag_Trabalho/:id_anotacao', controllerAnotacao.tag_trabalho);

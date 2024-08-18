@@ -34,10 +34,28 @@
 </header>
 
 <main>
-
 	<div class="container-fluid text-center">
 		{{#if anotacoes}}
-
+			{{!Cabeçalho de anotações}}
+			<form class="row row-cols-auto justify-content-end align-items-center mb-4" method="post" action="/filtro">
+				<div class="col-auto">
+					<label class="form-label" for="tag">Filtro por Tag</label>
+				</div>							
+				<div class="col-auto">
+					<select class="form-select" name="tag">
+							<option value="Todas" selected>Todas</option>
+							<option value="Trabalho">Trabalho</option>
+							<option value="Pessoal" >Pessoal</option>
+							<option value="Curso">Curso</option>
+							<option value="Lazer">Lazer</option>
+					</select>
+				</div>
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary">
+						<i class="bi bi-filter-square-fill"></i>
+					</button>
+				</div>
+			</form>
 			<div class="row">
 				<div class="col d-none d-lg-block">
 					<strong>Alterar Status</strong>
@@ -52,7 +70,7 @@
 					<strong>Operação</strong>
 				</div>
 			</div>
-			{{#each anotacoes}}
+			{{#each anotacoes}} {{! Lista de anotações}}
 				<div class="row">
 					{{#if this.lida}}
 						<div class="col d-none d-lg-block">
@@ -95,12 +113,48 @@
 						</a>
 					</div>
 				</div>
-
 			{{/each}}
 
-		{{else}}
-			<h3>Ainda não há nenhuma anotação cadastrada</h3>
-			<a href="anotacao/cria">Crie sua primeira anotação</a>
+		{{else}} {{!-- Se o array de anotações estiver vazio --}}
+			{{#if filtro}} {{!-- Se não tiver nenhuma anotação, com filtro --}}
+				<form class="row row-cols-auto justify-content-end align-items-center mb-4" method="post" action="/filtro">
+				<div class="col-auto">
+					<label class="form-label" for="tag">Filtro por Tag</label>
+				</div>							
+				<div class="col-auto">
+					<select class="form-select" name="tag">
+							<option value="Todas" selected>Todas</option>
+							<option value="Trabalho">Trabalho</option>
+							<option value="Pessoal" >Pessoal</option>
+							<option value="Curso">Curso</option>
+							<option value="Lazer">Lazer</option>
+					</select>
+				</div>
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary">
+						<i class="bi bi-filter-square-fill"></i>
+					</button>
+				</div>
+				</form>
+				<div class="row">
+					<div class="col d-none d-lg-block">
+						<strong>Alterar Status</strong>
+					</div>
+					<div class="col d-none d-lg-block">
+						<strong>Tag</strong>
+					</div>
+					<div class="col">
+						<strong>Anotação</strong>
+					</div>
+					<div class="col">
+						<strong>Operação</strong>
+					</div>
+				</div>
+				<h3 class="mt-5">Nenhum registro encontrado com a tag: {{tag}}</h3>
+			{{else}} {{!-- Se não tiver nenhuma anotação, geral --}}
+				<h3>Ainda não há nenhuma anotação cadastrada</h3>
+				<a href="anotacao/cria">Crie sua primeira anotação</a>
+			{{/if}}
 		{{/if}}
 	</div>
 </main>

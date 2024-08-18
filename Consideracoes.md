@@ -17,7 +17,7 @@ A respeito de todas as operações do CRUD voltar para a tela principal:
 [-] Aplicação de ícones Boostrap e Imagem
 [x] Alteração de tag por clique.
 [x] Janela modal de exclusão de anotações.
-[] Opção de Filtro por Tag
+[fazendo] Opção de Filtro por Tag
 [] Mensagem de Erro
 [] Escolha de esquema de cores para aplicação
 [] Aplicar qualquer outra estilização CSS que possa contribuir para o layout, como margens,

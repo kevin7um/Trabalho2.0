@@ -1,4 +1,4 @@
-const anotacoes = require('../model/anotacaoMemoria.js')
+const anotacoes = require('../model/anotacaoMemoria.js');
 
 var incremento=1;
 function incrementando(){
@@ -96,46 +96,52 @@ exports.lida = async function(req, res) {
     let anotacao = await anotacoes.consulta(id);
     anotacao.lida = true;
 
-    res.redirect("/");
+    let urlReq = req.get('referer');
+    res.redirect(urlReq);
 }
 
 exports.nao_lida = async function(req, res) {
     let id = req.params.id_anotacao;
     let anotacao = await anotacoes.consulta(id);
     anotacao.lida = false;
-
-    res.redirect("/");
+    
+    let urlReq = req.get('referer');
+    res.redirect(urlReq);
 }
 
 exports.tag_pessoal = async function(req, res){
     let id = req.params.id_anotacao;
     let anotacao = await anotacoes.consulta(id);
     anotacao.tag = "Trabalho";
-
-    res.redirect("/");
+    
+    let urlReq = req.get('referer');
+    res.redirect(urlReq);
 }
 
 exports.tag_trabalho = async function(req, res){
     let id = req.params.id_anotacao;
     let anotacao = await anotacoes.consulta(id);
     anotacao.tag = "Curso";
-
-    res.redirect("/");
+    
+    let urlReq = req.get('referer');
+    res.redirect(urlReq);
 }
 
 exports.tag_curso = async function(req, res){
     let id = req.params.id_anotacao;
     let anotacao = await anotacoes.consulta(id);
     anotacao.tag = "Lazer";
-
-    res.redirect("/");
+    
+    let urlReq = req.get('referer');
+    res.redirect(urlReq);
 }
 
 exports.tag_lazer = async function(req, res){
     let id = req.params.id_anotacao;
     let anotacao = await anotacoes.consulta(id);
     anotacao.tag = "Pessoal";
-
-    res.redirect("/");
+    
+    let urlReq = req.get('referer');
+    res.redirect(urlReq);
 }
 

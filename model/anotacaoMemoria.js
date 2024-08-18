@@ -3,6 +3,7 @@ var Anotacao = require("./modelo.js")
 const lista_anotacoes = [];
 
 class AnotacaoMemoria {
+    filtro = "";
 
     async atualiza(id, titulo, descricao, data, tag, lida) {
         lista_anotacoes[id] = new Anotacao(id, titulo, descricao, data, tag, lida)
@@ -31,6 +32,18 @@ class AnotacaoMemoria {
 
     async lista_ids() {
         return Object.keys(lista_anotacoes)
+    }
+
+    async filtro_tag(tag){
+        if(tag == "Todas"){
+            return Object.values(lista_anotacoes);
+        }
+        else{
+            const lista = lista_anotacoes.filter((item) => {
+                return item._tag.includes(tag)
+            })
+            return Object.values(lista)
+        }
     }
 
     async qtd() {
